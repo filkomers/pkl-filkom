@@ -1,0 +1,172 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Latex file abstraction to pkl class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{pkl}
+
+% ------------------------------------------------------------
+% Add your own needed package here
+% ------------------------------------------------------------
+\usepackage[titles]{tocloft} % add prefix for images and tables
+\renewcommand\cftfigpresnum{Gambar\  }
+\renewcommand\cfttabpresnum{Tabel\   }
+
+\usepackage{hyperref} % add hyperlink to the document
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
+\setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
+
+\usepackage[labelfont=bf]{caption} % Bold Face for image description
+
+\usepackage{caption} % add ability to customize caption
+\usepackage{subcaption} % add ability to customize subcaption
+% - \usepackage{showframe} % show frame margin
+
+\usepackage{subcaption}
+% -----------------------------------------------------------------
+% Font style
+% -----------------------------------------------------------------
+\usepackage{fontspec} % use custom font
+\setmainfont{Carlito} % carlito is calibri replacement
+
+% -----------------------------------------------------------------
+% Bibliography style
+% -----------------------------------------------------------------
+% \usepackage[style=authoryear, % author year style
+% %\usepackage[style=agsm, % author year style
+% firstinits=true, % abbrev fist name
+% ]{biblatex}
+% \DeclareNameAlias{author}{last-first} % put last name fist at
+%                                 % bibliography list
+
+\input{hangilastyle}
+\addbibresource{daftar-pustaka.bib}
+
+\renewcommand*{\finalnamedelim}{% % change and to &
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\&\space}
+
+\newcommand{\cmmnt}[1]{\ignorespaces} % remove space in generated
+% documents if we put comments in source
+
+% -----------------------------------------------------------------
+% Fill your data here
+% -----------------------------------------------------------------
+% title
+\titlepkl{The Compendious Book on Calculation by Completion and Balancing}
+% personal data
+\fullname{M. Ibn Musa al-Khwarizmi}
+\idnum{112233445566}
+\approvaldate{11}
+\degree{N/A}
+\yearsubmit{2018}
+\laboratory{Rekayasa Perangkat Lunak}
+\pklplacetype{PT}
+\pklstartdate{1 Juli}
+\pklenddate{31 Agustus 2018}
+\pklplace{Foo Baz Bar}
+\dept{TEKNIK INFORMATIKA}
+\faculty{FAKULTAS ILMU KOMPUTER}
+\university{universitas brawijaya}
+\city{malang}
+% supervisor data
+\firstsupervisor{Nama Ketua Jurusan, S.T., M.T., Ph.D}
+\firstsupervisornip{1234 45679}
+\secondsupervisor{Nama Dosen Pembimbing, S.T., M.T., Ph.D}
+\secondsupervisornip{5555 7777}
+\thirdsupervisor{Abu al-Qasim al-Zahrawi}
+\thirdsupervisornip{1111 2222}
+
+
+% -----------------------------------------------------------------
+% And so it begins
+% -----------------------------------------------------------------
+\begin{document}
+
+% -----------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------
+\cover
+
+% -----------------------------------------------------------------
+% Approval Page
+% -----------------------------------------------------------------
+\approvalpage
+
+% -----------------------------------------------------------------
+% Approval Page Lapangan
+% -----------------------------------------------------------------
+\approvalpagelapangan
+
+
+%-----------------------------------------------------------------
+%Disini awal masukan untuk Prakata
+%-----------------------------------------------------------------
+\preface
+
+Puji syukur kehadirat Allah SWT yang telah melimpahkan
+rahmat, taufik dan hidayah-Nya sehingga laporan PKL yang berjudul
+“Rancang Bangun Aplikasi Jejaring Sosial Kampus Berbasis GPS Pada
+Smartphone Android” ini dapat terselesaikan.
+
+\begin{enumerate}
+\item{Bapak Nama Pembimbing, S.Si., M.Sc. selaku dosen pembimbing PKL
+    yang telah dengan sabar membimbing dan mengarahkan penulis
+    sehingga dapat menyelesaikan laporan ini.}
+\item{Bapak Drs. Ketua Program Studi, M.Kom. selaku ketua Program
+    Studi Teknik Informatika.}
+\item{Bapak Nama Ketua Jurusan, S.T., M.T., Ph.D. selaku selaku ketua
+    Jurusan Teknik Informatika.}
+\item{Ayahanda dan Ibunda dan seluruh keluarga besar atas segala
+    nasehat, kasih sayang, perhatian dan kesabarannya di dalam
+    membesarkan dan mendidik penulis, serta yang senantiasa tiada
+    henti-hentinya memberikan doa dan semangat demi terselesaikannya
+    laporan ini.}
+\item{Seluruh civitas akademika Teknik Informatika Universitas
+    Brawijaya yang telah banyak memberi bantuan dan dukungan selama
+    penyelesaian laporan PKL ini.}
+\end{enumerate}
+
+Penulis menyadari bahwa dalam penyusunan laporan ini masih banyak kekurangan,
+sehingga saran dan kritik yang membangun sangat penulis harapkan. Akhir kata penulis
+berharap PKL ini dapat membawa manfaat bagi semua pihak yang menggunakannya.
+
+\vspace{1.5cm}
+
+\begin{tabular}{p{7.5cm}c}
+&Malang, 1 Juli 2017\\
+&\\
+&\\
+&{Penulis}
+\end{tabular}
+
+% -----------------------------------------------------------------
+% TOCS
+% -----------------------------------------------------------------
+\tableofcontents
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\listoftables
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\listoffigures
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+% \listofappendices TODO
+\addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
+
+% -----------------------------------------------------------------
+% Chapter
+% -----------------------------------------------------------------
+% change numbering to arabic from bab1
+\selectlanguage{bahasa}\clearpage\pagenumbering{arabic}\setcounter{page}{1}
+
+\include{bab1}
+\include{bab2}
+\include{bab3}
+
+% -----------------------------------------------------------------
+% Bibliography
+% -----------------------------------------------------------------
+% -- \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+\printbibliography[title={DAFTAR PUSTAKA}]
+
+
+\end{document}

@@ -9,6 +9,16 @@ Anda dapat menambahkan *package* sesuai kebutuhan anda pada bagian
 
 "Font style"
 
+Pengguna GNU/Linux yang ingin menggunakan font lain. Dapat
+menggunakan:
+
+``` tex
+\setmainfont[Path=/to/your/font/dir,
+    BoldItalicFont=fooz.ttf,
+    BoldFont      =foob.ttf,
+    ItalicFont    =fooi.ttf]{foo.ttf}
+```
+
 ## Merubah gaya sitasi
 
 "Bibliography style"

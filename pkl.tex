@@ -17,28 +17,99 @@
 \setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
 
 \usepackage[labelfont=bf]{caption} % Bold Face for image description
+\usepackage{subfig} % images side by side
 
-\usepackage{caption} % add ability to customize caption
-\usepackage{subcaption} % add ability to customize subcaption
-% - \usepackage{showframe} % show frame margin
+\usepackage{float} % force placing figure here
+\usepackage{csquotes}
+\usepackage{enumitem} % paragraph inside itemize
 
-\usepackage{subcaption}
+\renewcommand*{\arraystretch}{1.8} % allow space in math formula
+
+% -----------------------------------------------------------------
+% longtable
+% -----------------------------------------------------------------
+
+\usepackage{longtable} % add table
+% itemiize inside longtable
+% \usepackage{array,booktabs,enumitem}% http://ctan.org/pkg/{array,booktabs,enumitem}
+% \newcolumntype{P}[1]{>{\endgraf\vspace*{-\baselineskip}}p{#1}}
+
+% avoid overfull in longtable
+% TODO overfull still occured
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+% -----------------------------------------------------------------
+% Custom source code style
+% -----------------------------------------------------------------
+\usepackage[newfloat,chapter]{minted}
+
+% allow caption and label in minted
+% https://tex.stackexchange.com/questions/254044/caption-and-label-on-minted-code
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Tabel Kode}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,minted,skins,breakable}
+\newtcblisting{ignasicblock}[1][]{%
+  breakable,
+  colback=white,
+  colframe=black,
+  colbacktitle=white,
+  sharp corners,
+  enhanced,
+  listing engine=minted,
+  listing only,
+  left=10mm,
+  title=Source Code,
+  halign title=center,
+  overlay={\draw[line width=.5mm] ([xshift=8mm]frame.south west)
+    -- ([xshift=8mm]frame.north west);
+    \node[right] at (title.west) {No};},
+  minted style=colorful,
+  minted language=Python,
+  minted options={%
+    linenos=true,
+    fontsize=\footnotesize,
+    numbersep=6mm,
+    texcl=true,
+    breaklines=true,
+    autogobble=true},
+  coltitle=black,
+  #1
+}
+
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
 % -----------------------------------------------------------------
 % Font style
 % -----------------------------------------------------------------
 \usepackage{fontspec} % use custom font
-\setmainfont{Carlito} % carlito is calibri replacement
+
+\setmainfont[Path=/home/yourusername/.local/share/fonts/font-windows/calibri/,
+BoldItalicFont=calibriz.ttf,
+BoldFont      =calibrib.ttf,
+ItalicFont    =calibrii.ttf]{calibri.ttf} % use original calibri font
+
+\setmonofont[Path=/home/yourusername/.local/share/fonts/font-windows/courier-new/,
+BoldItalicFont=courbi.ttf,
+BoldFont      =courbd.ttf,
+ItalicFont    =couri.ttf]{cour.ttf} % use original courir new font
+
+
+% -----------------------------------------------------------------
+% Debungging configuration
+% -----------------------------------------------------------------
+% \overfullrule=2cm % show overfull
+% \usepackage{showframe} % show frame margin
+% \renewcommand\ShowFrameLinethickness{0.25pt}
+% \renewcommand*\ShowFrameColor{\color{red}}
+
 
 % -----------------------------------------------------------------
 % Bibliography style
 % -----------------------------------------------------------------
-% \usepackage[style=authoryear, % author year style
-% %\usepackage[style=agsm, % author year style
-% firstinits=true, % abbrev fist name
-% ]{biblatex}
-% \DeclareNameAlias{author}{last-first} % put last name fist at
-%                                 % bibliography list
-
 \input{hangilastyle}
 \addbibresource{daftar-pustaka.bib}
 
@@ -70,12 +141,10 @@
 \university{universitas brawijaya}
 \city{malang}
 % supervisor data
-\firstsupervisor{Nama Ketua Jurusan, S.T., M.T., Ph.D}
+\firstsupervisor{Ibn ar-Razāz al-Jazarī, S.T., M.T., Ph.D}
 \firstsupervisornip{1234 45679}
-\secondsupervisor{Nama Dosen Pembimbing, S.T., M.T., Ph.D}
+\secondsupervisor{Ibn Mūsā ibn Shākir , S.T., M.T., Ph.D}
 \secondsupervisornip{5555 7777}
-\thirdsupervisor{Abu al-Qasim al-Zahrawi}
-\thirdsupervisornip{1111 2222}
 
 
 % -----------------------------------------------------------------
@@ -96,49 +165,155 @@
 % -----------------------------------------------------------------
 % Approval Page Lapangan
 % -----------------------------------------------------------------
-\approvalpagelapangan
+% \approvalpagelapangan
 
 
-%-----------------------------------------------------------------
-%Disini awal masukan untuk Prakata
-%-----------------------------------------------------------------
-\preface
+% -----------------------------------------------------------------
+% PERNYATAAN ORISINALITAS
+% -----------------------------------------------------------------
+{\orisinalitas
 
-Puji syukur kehadirat Allah SWT yang telah melimpahkan
-rahmat, taufik dan hidayah-Nya sehingga laporan PKL yang berjudul
-“Rancang Bangun Aplikasi Jejaring Sosial Kampus Berbasis GPS Pada
-Smartphone Android” ini dapat terselesaikan.
+  Saya menyatakan dengan sebenar-benarnya bahwa sepanjang pengetahuan
+  saya, di dalam laporan PKL ini tidak terdapat karya ilmiah yang
+  pernah diajukan oleh orang lain dalam kegiatan akademik di suatu
+  perguruan tinggi, dan tidak terdapat karya atau pendapat yang pernah
+  ditulis atau diterbitkan oleh orang lain, kecuali yang secara
+  tertulis disitasi dalam naskah ini dan disebutkan dalam daftar
+  pustaka.
 
-\begin{enumerate}
-\item{Bapak Nama Pembimbing, S.Si., M.Sc. selaku dosen pembimbing PKL
-    yang telah dengan sabar membimbing dan mengarahkan penulis
-    sehingga dapat menyelesaikan laporan ini.}
-\item{Bapak Drs. Ketua Program Studi, M.Kom. selaku ketua Program
-    Studi Teknik Informatika.}
-\item{Bapak Nama Ketua Jurusan, S.T., M.T., Ph.D. selaku selaku ketua
-    Jurusan Teknik Informatika.}
-\item{Ayahanda dan Ibunda dan seluruh keluarga besar atas segala
-    nasehat, kasih sayang, perhatian dan kesabarannya di dalam
-    membesarkan dan mendidik penulis, serta yang senantiasa tiada
-    henti-hentinya memberikan doa dan semangat demi terselesaikannya
-    laporan ini.}
-\item{Seluruh civitas akademika Teknik Informatika Universitas
-    Brawijaya yang telah banyak memberi bantuan dan dukungan selama
-    penyelesaian laporan PKL ini.}
-\end{enumerate}
+  Apabila ternyata didalam laporan PKL ini terbukti terdapat
+  unsur-unsur plagiasi, saya bersedia PKL ini digugurkan, serta
+  diproses sesuai dengan peraturan perundang-undangan yang berlaku (UU
+  No. 20 Tahun 2003, Pasal 25 ayat 2 dan Pasal 70).
+  \vspace{1.5cm}
 
-Penulis menyadari bahwa dalam penyusunan laporan ini masih banyak kekurangan,
-sehingga saran dan kritik yang membangun sangat penulis harapkan. Akhir kata penulis
-berharap PKL ini dapat membawa manfaat bagi semua pihak yang menggunakannya.
+  \noindent
+  % \hspace*{8cm}Malang, 31 Agustus 2018 \vspace{1.5cm} \\
+  \hspace*{8cm}Malang, 31 Agustus 2018  \\
+  \hspace*{8cm}Ketua Kelompok,  \vspace{1.5cm} \\
 
-\vspace{1.5cm}
+  \hspace*{6.8cm}\underline{M. Ibn Musa al-Khwarizmi} \\
+  \hspace*{8cm}NIM : 112233445566
 
-\begin{tabular}{p{7.5cm}c}
-&Malang, 1 Juli 2017\\
-&\\
-&\\
-&{Penulis}
-\end{tabular}
+}
+
+% -----------------------------------------------------------------
+% Disini awal masukan untuk Prakata
+% -----------------------------------------------------------------
+{\preface
+
+  Puji syukur kehadirat Allah SWT yang telah melimpahkan
+  rahmat, taufik dan hidayah-Nya sehingga laporan PKL yang berjudul
+  “Rancang Bangun Aplikasi Jejaring Sosial Kampus Berbasis GPS Pada
+  Smartphone Android” ini dapat terselesaikan.
+
+  \begin{enumerate}
+  \item{Bapak Ibn ar-Razāz al-Jazarī, S.T., M.T., Ph.D. selaku dosen pembimbing PKL
+      yang telah dengan sabar membimbing dan mengarahkan penulis
+      sehingga dapat menyelesaikan laporan ini.}
+  \item{Bapak Ibn Mūsā ibn Shākir , S.T., M.T., Ph.D. selaku ketua pembimbing lapangan.}
+  \item{Ayahanda dan Ibunda dan seluruh keluarga besar atas segala
+      nasehat, kasih sayang, perhatian dan kesabarannya di dalam
+      membesarkan dan mendidik penulis, serta yang senantiasa tiada
+      henti-hentinya memberikan doa dan semangat demi terselesaikannya
+      laporan ini.}
+  \item{Seluruh civitas akademika Teknik Informatika Universitas
+      Brawijaya yang telah banyak memberi bantuan dan dukungan selama
+      penyelesaian laporan PKL ini.}
+  \end{enumerate}
+
+  Penulis menyadari bahwa dalam penyusunan laporan ini masih banyak kekurangan,
+  sehingga saran dan kritik yang membangun sangat penulis harapkan. Akhir kata penulis
+  berharap PKL ini dapat membawa manfaat bagi semua pihak yang menggunakannya.
+
+
+  \vspace{0.8cm}
+
+
+  \noindent
+  \hspace*{8cm}Malang, 31 Agustus 2018 \\
+  \hspace*{8cm}Ketua Kelompok, \vspace{1.5cm} \\
+
+  \hspace*{6.8cm}M. Ibn Musa al-Khwarizmi \\
+  \hspace*{8cm}Email: alkhwarizmi@student.ub.ac.id
+
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK INDONESIA
+% -----------------------------------------------------------------
+{\abstractind
+
+  Pellentesque non quam in ipsum \emph{rutrum cursus} consequat mollis
+  mi. Maecenas non sapien luctus magna mollis ultrices. Curabitur
+  pulvinar, lorem a pharetra volutpat, orci lorem dictum nisi, vel
+  rutrum felis elit eu risus. In hac habitasse platea
+  dictumst. Quisque eget sollicitudin tellus, laoreet sodales
+  purus. Sed lobortis ornare nisi non eleifend. Aenean viverra
+  placerat est, id facilisis metus tincidunt eu. In velit ligula,
+  ultrices vel eros eu, viverra consequat augue. Donec ac turpis
+  justo.
+
+  Maecenas posuere convallis ligula, ut ullamcorper orci pulvinar
+  in. Proin libero nisl, dapibus at congue venenatis, lacinia quis
+  diam. Nulla sed facilisis sapien. Fusce vitae enim auctor, convallis
+  metus eu, laoreet augue. Suspendisse nec hendrerit tortor. Proin
+  ultricies gravida lorem, eu lobortis turpis dictum nec. In hac
+  habitasse platea dictumst. Quisque urna nunc, feugiat eget lorem
+  vitae, eleifend lobortis lacus. Integer congue, arcu nec porttitor
+  venenatis, ligula enim molestie neque, eu venenatis orci leo eu
+  tortor. Etiam consectetur augue sed mi molestie suscipit. Donec est
+  ligula, tempus eget egestas sed, ornare a erat.
+
+  Ut a fringilla felis, ut \emph{rutrum libero}. Nulla tempus urna ex, sit
+  amet consequat massa accumsan tincidunt. Etiam aliquet mauris sit
+  amet tortor sagittis, sed vehicula dui tristique. In hac habitasse
+  platea dictumst. Donec eget arcu blandit, accumsan ex a, pharetra
+  dui. Aliquam pharetra dui libero, eget lacinia lacus aliquet
+  quis. Aenean bibendum nunc condimentum volutpat gravida. Duis
+  facilisis neque sit amet lectus venenatis.
+
+  \emph{Kata kunci}: fringilla, \emph{venenatis}, \emph{volutpat gravida}
+
+
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK ENGLSIH
+% -----------------------------------------------------------------
+{\abstracteng
+
+  \emph{Pellentesque non quam in ipsum rutrum cursus consequat mollis
+    mi. Maecenas non sapien luctus magna mollis ultrices. Curabitur
+    pulvinar, lorem a pharetra volutpat, orci lorem dictum nisi, vel
+    rutrum felis elit eu risus. In hac habitasse platea
+    dictumst. Quisque eget sollicitudin tellus, laoreet sodales
+    purus. Sed lobortis ornare nisi non eleifend. Aenean viverra
+    placerat est, id facilisis metus tincidunt eu. In velit ligula,
+    ultrices vel eros eu, viverra consequat augue. Donec ac turpis
+    justo.}
+
+  \emph{Maecenas posuere convallis ligula, ut ullamcorper orci pulvinar
+    in. Proin libero nisl, dapibus at congue venenatis, lacinia quis
+    diam. Nulla sed facilisis sapien. Fusce vitae enim auctor, convallis
+    metus eu, laoreet augue. Suspendisse nec hendrerit tortor. Proin
+    ultricies gravida lorem, eu lobortis turpis dictum nec. In hac
+    habitasse platea dictumst. Quisque urna nunc, feugiat eget lorem
+    vitae, eleifend lobortis lacus. Integer congue, arcu nec porttitor
+    venenatis, ligula enim molestie neque, eu venenatis orci leo eu
+    tortor. Etiam consectetur augue sed mi molestie suscipit. Donec est
+    ligula, tempus eget egestas sed, ornare a erat.}
+
+  \emph{Ut a fringilla felis, ut rutrum libero. Nulla tempus urna ex, sit
+    amet consequat massa accumsan tincidunt. Etiam aliquet mauris sit
+    amet tortor sagittis, sed vehicula dui tristique. In hac habitasse
+    platea dictumst. Donec eget arcu blandit, accumsan ex a, pharetra
+    dui. Aliquam pharetra dui libero, eget lacinia lacus aliquet
+    quis. Aenean bibendum nunc condimentum volutpat gravida. Duis
+    facilisis neque sit amet lectus venenatis.}
+
+  \emph{Keyword}: fringilla, \emph{venenatis}, \emph{volutpat gravida}
+}
 
 % -----------------------------------------------------------------
 % TOCS
@@ -149,7 +324,7 @@ berharap PKL ini dapat membawa manfaat bagi semua pihak yang menggunakannya.
 \addcontentsline{toc}{chapter}{DAFTAR TABEL}
 \listoffigures
 \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
-% \listofappendices TODO
+% TODO \listofappendices
 \addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
 
 % -----------------------------------------------------------------
@@ -161,12 +336,22 @@ berharap PKL ini dapat membawa manfaat bagi semua pihak yang menggunakannya.
 \include{bab1}
 \include{bab2}
 \include{bab3}
+% \include{bab4}
+% \include{bab5}
+% \include{bab6}
 
 % -----------------------------------------------------------------
 % Bibliography
 % -----------------------------------------------------------------
 % -- \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+\emergencystretch=1em
 \printbibliography[title={DAFTAR PUSTAKA}]
 
+% \include{lampiran}
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

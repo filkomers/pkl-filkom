@@ -11,6 +11,7 @@
 \RequirePackage{indentfirst}
 \RequirePackage{setspace}
 \RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage{graphicx,latexsym}
 \RequirePackage{array}
 
@@ -66,7 +67,8 @@
     \addcontentsline{toc}{chapter}{#2}
   }
 
-\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
 %% section in each chapter
 \renewcommand \thesection {\@arabic\c@chapter.\@arabic\c@section}
 %% subsection in each chapter
@@ -104,8 +106,11 @@
   {1.5ex \@plus .2ex}%
   {\normalfont\normalsize\bfseries}}
 \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
-  {3.25ex \@plus1ex \@minus.2ex}%
-  {-1em}%
+  % {3.25ex \@plus1ex \@minus.2ex}%
+  % {-1em}%
+  % {\normalfont\normalsize\bfseries}}
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
   {\normalfont\normalsize\bfseries}}
 \renewcommand{\paragraph}{\subparagraph}
 
@@ -217,33 +222,6 @@
 \newcommand{\thirdsupervisornip}[1]{\gdef\@thirdsupervisornip{#1}}
 \newcommand{\@thirdsupervisornip}{}
 
-% ------------------------------------------------------------
-% TTD Placement
-% ------------------------------------------------------------
-\def\ttdsatu#1#2{\vbox{\hsize=4.5cm
-    \kern2cm
-    \kern1ex
-    \hbox to \hsize{\strut #1 \hfil}
-    \hbox to \hsize{\strut #2 \hfil}}}
-
-\def\ttddua#1#2{\vbox{\hsize=4.5cm
-    \kern2cm
-    \kern1ex
-    \hbox to \hsize{\strut #1 \hfil}
-    \hbox to \hsize{\strut #2 \hfil}}}
-
-
-\def\ttdsatus#1#2{\vbox{\hsize=13.5cm
-    \kern2cm
-    \kern1ex
-    \hbox to \hsize{\strut\hfil #1 \hfil}
-    \hbox to \hsize{\strut\hfil #2 \hfil}}}
-
-\def\ttdduas#1#2{\vbox{\hsize=13.5cm
-    \kern2cm
-    \kern1ex
-    \hbox to \hsize{\strut\hfil #1 \hfil}
-    \hbox to \hsize{\strut\hfil #2 \hfil}}}
 
 % ------------------------------------------------------------
 % Define cover in Indonesian
@@ -254,8 +232,12 @@
   \setcounter{page}{1}
   \begin{center}
     \begin{singlespace}
-      \fontsize{14pt}{16pt}\selectfont \MakeUppercase{
-        \normalfont\bfseries LAPORAN PRAKTIK KERJA LAPANGAN (PKL)}\par\nobreak
+      \fontsize{14pt}{16pt}\selectfont \MakeUppercase{\normalfont\bfseries LAPORAN PRAKTIK KERJA LAPANGAN (PKL)}\par\nobreak
+      \vspace{0.5cm}
+      \fontsize{14pt}{16pt}\selectfont \MakeUppercase{\normalfont\bfseries PERUSAHAAN}\par\nobreak
+      \vspace{0.5cm}
+      \fontsize{14pt}{16pt}\selectfont \MakeUppercase{\normalfont\bfseries PT. Your Awesome Factory}
+      \par\nobreak
       \vspace{1.5cm}
       \MakeUppercase{\normalfont\bfseries \@titlepkl}\\
       \vspace{0.5cm}
@@ -266,7 +248,7 @@
       {\normalfont
         Disusun oleh:\\
         \vskip1.2cm
-        \MakeUppercase{\normalfont \@fullname} \hspace{1cm} \MakeUppercase{\normalfont \@idnum}}\\
+        \normalfont \@fullname \hspace{0.7cm} \MakeUppercase{NIM : \@idnum}}\\
       \vfill
       {\normalfont
         \MakeUppercase{\normalfont PROGRAM STUDI \@dept}\\
@@ -287,105 +269,58 @@
 \def\approvalpage{%
   % \newpage\thispagestyle{empty}%
   \begin{center}
+    \MakeUppercase{\normalfont\large\bfseries\expandafter{PENGESAHAN}}\\
+    \vspace{0.4cm}
     \begin{doublespace}
-      \vspace{1.0cm}
-      \MakeUppercase{\normalfont\large\bfseries\expandafter{LEMBAR PENGESAHAN}}\\
-      \vspace{0.5cm}
       \MakeUppercase{\normalfont LAPORAN PRAKTIK KERJA LAPANGAN (PKL)}\\
-      \MakeUppercase{\normalfont PERUSAHAAAN / INDUSTRI}\\
-      \@pklplacetype\ \@pklplace \\
-      \vspace{1.0cm}
+      \MakeUppercase{\normalfont PERUSAHAAAN}\\
+      \MakeUppercase{\@pklplacetype.\ \@pklplace} \\
+
+      \vspace{0.7cm}
       \MakeUppercase{\normalfont\@titlepkl}\par\nobreak
-      \vspace{1.0cm}
+      \vspace{0.7cm}
       {\normalfont Diajukan untuk memenuhi sebagian persyaratan Kurikulum Sarjana}\\
-      % \bigskip
-      {\normalfont Program Studi \@dept}\\
-      % \bigskip
+      {\normalfont Program Studi Teknik Informatika}\\
       {\normalfont Bidang \@laboratory}\\
-      \vspace{2.0cm}
+      \vspace{0.7cm}
       Disusun oleh:\\
-      \textbf{\@fullname}\\
-      \textbf{\@idnum}\\
-      \vspace{1.0cm}
+      \@fullname\ \hspace{1cm} NIM : \@idnum\\
+    \end{doublespace}
+
+    \vspace{0.7cm}
+
+    \begin{singlespace}
       Praktik Kerja Lapangan ini dilaksanakan pada \\
       \@pklstartdate\ sampai dengan \@pklenddate \\
+      \vspace{0.19cm}
       Telah diperiksa dan disetujui oleh: \\
-      % \vspace{1.5cm}
+      \vspace{0.6cm}
 
-      \vspace{-1.8cm}
-
-      \hbox to \hsize{
-        \ttdsatu
-        {Mengetahui,}
-        {Ketua Jurusan Teknik Informatika}
-        \hfil
-        \ttdsatu
-        {Menyetujui,}
-        {Dosen Pembimbing PKL}}
-
-      \hbox to \hsize{
-        \ttddua
-        {\underline{\@firstsupervisor}}
-        {NIP: \@firstsupervisornip}
-        \hfil
-        \ttddua
-        {\underline{\@secondsupervisor}}
-        {NIP: \@secondsupervisornip}}
+      Dosen Pembimbing PKL \\
+      \vspace{2cm}
+      \underline{\@firstsupervisor} \\
+      NIP: \@firstsupervisornip \\
 
 
-    \end{doublespace}
+      \vspace{1cm}
+      Mengetahui, \\
+      Ketua Jurusan Teknik Informatika \\
+      \vspace{2cm}
+      \underline{\@secondsupervisor} \\
+      NIP: \@secondsupervisornip
+    \end{singlespace}
+
   \end{center}
   % \addcontentsline{toc}{chapter}{Halaman Pengesahan}
 }
 
 
-% ------------------------------------------------------------
-% Approval Page Lapangan
-% ------------------------------------------------------------
-
-\def\approvalpagelapangan{%
-  % \newpage\thispagestyle{empty}%
-  \begin{center}
-    \begin{doublespace}
-      \vspace{1.0cm}
-      \MakeUppercase{\normalfont\large\bfseries\expandafter{LEMBAR PENGESAHAN}}\\
-      \vspace{0.5cm}
-      \MakeUppercase{\normalfont LAPORAN PRAKTIK KERJA LAPANGAN (PKL)}\\
-      \MakeUppercase{\normalfont PERUSAHAAAN / INDUSTRI}\\
-      \@pklplacetype\ \@pklplace \\
-      \vspace{1.0cm}
-      \MakeUppercase{\normalfont\@titlepkl}\par\nobreak
-      \vspace{1.0cm}
-      {\normalfont Diajukan untuk memenuhi sebagian persyaratan Kurikulum Sarjana}\\
-      % \bigskip
-      {\normalfont Program Studi \@dept}\\
-      % \bigskip
-      {\normalfont Bidang \@laboratory}\\
-      \vspace{2.0cm}
-      Disusun oleh:\\
-      \textbf{\@fullname}\\
-      \textbf{\@idnum}\\
-      \vspace{1.0cm}
-      Praktik Kerja Lapangan ini dilaksanakan pada \\
-      \@pklstartdate\ sampai dengan \@pklenddate \\
-      Telah diperiksa dan disetujui oleh: \\
-
-      \vspace{-1.8cm}
-
-      \hbox to \hsize{
-        \ttdsatus
-        {Mengetahui,}
-        {Pembimbing PKL}}
-
-      \hbox to \hsize{
-        \ttdduas
-        {\underline{\@thirdsupervisor}}
-        {NIP: \@thirdsupervisornip}}
-
-
-    \end{doublespace}
-  \end{center}
-  % \addcontentsline{toc}{chapter}{Halaman Pengesahan}
+%------------------------------------------------------------
+%Orisinalitas
+%------------------------------------------------------------
+\def\orisinalitas{%
+  \chapter*{PERNYATAAN ORISINALITAS}%
+\addcontentsline{toc}{chapter}{PERNYATAAN ORISINALITAS}
 }
 
 %------------------------------------------------------------
@@ -396,6 +331,22 @@
 \addcontentsline{toc}{chapter}{\prefacename}
 }
 
+%------------------------------------------------------------
+% ABSTRAK INDONESIA
+%------------------------------------------------------------
+\def\abstractind{%
+  \chapter*{ABSTRAK}%
+  \addcontentsline{toc}{chapter}{ABSTRAK}
+}
+
+
+%------------------------------------------------------------
+% ABSTRAK ENGLSIH
+%------------------------------------------------------------
+\def\abstracteng{%
+  \chapter*{ABSTRACT}%
+  \addcontentsline{toc}{chapter}{ABSTRACT}
+}
 
 % ------------------------------------------------------------
 % Detect spacing choice

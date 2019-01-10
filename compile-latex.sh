@@ -1,3 +1,3 @@
 #!/bin/bash
 biber pkl
-xelatex pkl.tex
+xelatex -shell-escape pkl.tex

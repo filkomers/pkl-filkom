@@ -25,9 +25,7 @@ augue.
 
 \section{Landasan Teori}
 
-
 \subsection{\emph{Lorem}}
-\label{subsec:label}
 
 Curabitur elementum consequat elementum. Integer in vulputate
 metus. Aliquam erat volutpat. Phasellus vitae convallis orci. Etiam ac
@@ -35,7 +33,6 @@ metus tristique, viverra metus a, mattis lectus. Aenean vel vestibulum
 augue.
 
 \subsection{\emph{Ipsum}}
-\label{subsec:label}
 
 Curabitur elementum consequat elementum. Integer in vulputate
 metus. Aliquam erat volutpat. Phasellus vitae convallis orci. Etiam ac
@@ -43,17 +40,30 @@ metus tristique, viverra metus a, mattis lectus. Aenean vel vestibulum
 augue.
 
 \subsection{\emph{Dolor sit}}
-\label{subsec:label}
 
 Curabitur elementum consequat elementum. Integer in vulputate
 metus. Aliquam erat volutpat. Phasellus vitae convallis orci. Etiam ac
 metus tristique, viverra metus a, mattis lectus. Aenean vel vestibulum
 augue.
 
+\newpage
 
-% TODO
-% dolor
-% sit
+\begin{center}
+\begin{minipage}{0.8\textwidth}
+\begin{code}
+\begin{ignasicblock}[title=test\_hallo,minted language=Python]
+      def test_case_1():
+          assert hallo("Budi") == "Hai Budi"
+
+      def test_case_2():
+          assert hallo("Ani") == "Nama Kosong"
+\end{ignasicblock}
+\captionof{listing}{\emph{Contoh script atomated testing}}
+\label{ts:hallo}
+\end{code}
+\end{minipage}
+\end{center}
+
 
 \section{Teknologi Pengembangan Perangkat Lunak}
 
